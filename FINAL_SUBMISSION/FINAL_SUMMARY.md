@@ -1,6 +1,6 @@
 # Final Submission Summary
 
-Generated: 26 November 2026, 09:16
+Generated: 26 November 2026, 09:18
 
 ## Models implemented
 
@@ -31,7 +31,7 @@ Generated: 26 November 2026, 09:16
 
 ## Artefacts
 
-- LaTeX PDF: present, 56 pages
+- LaTeX PDF: present, 59 pages
 - Word report: present
 - Saved pipeline: models/best_model.joblib
 - Executed notebooks: 4

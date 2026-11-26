@@ -129,3 +129,49 @@ every input by 100. The prediction tests assert that the saved model returns val
 labels, that the reported confidence is the top-3 maximum, that missing and
 non-finite inputs are rejected, that the metadata agrees with the comparison table,
 and that the command-line entry point returns success.
+
+\chapter{ADDITIONAL RESULTS}
+
+This appendix carries the material that supports the argument of Chapter~6 but is
+too detailed for the main text: the fold-by-fold scores behind
+Table~\ref{tab:cv_results}, the confusion counts behind
+Table~\ref{tab:per_class}, the per-class ROC-AUC behind Figure~\ref{fig:roc}, and
+the complete list of strongly correlated feature pairs.
+
+\section{Cross-Validation Stability}
+
+Table~\ref{tab:cv_folds} gives the macro F1 of the selected configuration in each
+of the five folds. The spread is what makes the ranking in Table~\ref{tab:cv_results}
+fragile: the fold-to-fold range of a single model is comparable to the gap between
+adjacent models, so the middle of the leaderboard should not be read as a strict
+ordering.
+
+\input{tables/tab_cv_folds}
+
+\section{Confusion Counts}
+
+Table~\ref{tab:confusion_best} reproduces the counts behind the normalised matrix
+in Figure~\ref{fig:cmbest}. Reading it by column rather than by row gives the
+precision view: the Sira column receives 50 beans that are not Sira, which is why
+its precision is lower than that of the other five large classes.
+
+\input{tables/tab_confusion_best}
+
+\section{Per-Class Ranking Quality}
+
+Table~\ref{tab:roc_class} reports the one-vs-rest ROC-AUC per variety. Every class
+exceeds 0.986, and Bombay reaches 1.000, which separates two different questions:
+the model ranks beans of different varieties almost perfectly, but the single
+threshold implied by \texttt{predict} still misassigns 7.42\% of them. A
+rejection option built on the calibrated probability would exploit that gap.
+
+\input{tables/tab_roc_class}
+
+\section{Complete Correlation Structure}
+
+Table~\ref{tab:corr_all} lists all 21 feature pairs with $|r| \ge 0.90$. The
+clustering is not random: it follows the algebra of the shape-factor definitions in
+Equations~\eqref{eq:roundness}--\eqref{eq:zscore}. Any attribution of importance among the members of a cluster
+is therefore arbitrary, as Section~6.7 states.
+
+\input{tables/tab_corr_all}
