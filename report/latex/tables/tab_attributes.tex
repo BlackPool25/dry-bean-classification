@@ -1,0 +1,29 @@
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{Attributes of the dataset, in the order distributed by UCI}
+\label{tab:attributes}
+\begin{tabular}{clp{0.17\textwidth}p{0.36\textwidth}c}
+\toprule
+No. & Attribute & Type & Description & Role \\
+\midrule
+1 & Area & Integer & Pixels inside the bean boundary & Input \\
+2 & Perimeter & Continuous & Length of the bean boundary & Input \\
+3 & MajorAxisLength & Continuous & Longest line through the bean & Input \\
+4 & MinorAxisLength & Continuous & Shortest line through the bean & Input \\
+5 & AspectRation & Continuous & MajorAxisLength / MinorAxisLength & Input \\
+6 & Eccentricity & Continuous & Eccentricity of the equivalent ellipse & Input \\
+7 & ConvexArea & Integer & Pixels in the smallest enclosing convex polygon & Input \\
+8 & EquivDiameter & Continuous & Diameter of a circle of equal area & Input \\
+9 & Extent & Continuous & Bean area / bounding-box area & Input \\
+10 & Solidity & Continuous & Bean area / convex hull area & Input \\
+11 & roundness & Continuous & 4 pi Area / Perimeter squared & Input \\
+12 & Compactness & Continuous & EquivDiameter / MajorAxisLength & Input \\
+13 & ShapeFactor1 & Continuous & Area / MajorAxisLength cubed & Input \\
+14 & ShapeFactor2 & Continuous & MinorAxisLength / MajorAxisLength & Input \\
+15 & ShapeFactor3 & Continuous & Area / (Major x Minor axis length) & Input \\
+16 & ShapeFactor4 & Continuous & Convex-hull based roundness ratio & Input \\
+17 & Class & Nominal & One of seven registered bean varieties & Target \\
+\bottomrule
+\end{tabular}
+\end{table}

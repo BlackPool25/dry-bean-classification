@@ -1,0 +1,148 @@
+\chapter{LITERATURE SURVEY}
+
+The review covers the study that produced the dataset, work that benchmarks
+classifier families on the same features, work that addresses the class
+imbalance, and recent attempts that add preprocessing or deep architectures.
+Methodological sources for the individual algorithms are cited in Chapter~5.
+
+\section{Prior Work}
+
+\subsection{The originating study}
+
+Köklü and Özkan \cite{koklu2020} built a computer vision system to separate seven
+registered Turkish dry bean varieties. Images of 13,611 grains were segmented and
+reduced to 16 descriptors, 12 dimensional and 4 shape factors. Four classifiers
+were trained with 10-fold cross-validation: multilayer perceptron (MLP), support
+vector machine (SVM), k-nearest neighbours (kNN) and decision tree (DT). The
+reported correct classification rates were 93.13\% for SVM, 92.52\% for DT,
+91.73\% for MLP and 87.92\% for kNN, and a MATLAB interface was built around the
+best model. The study establishes that morphological features alone are sufficient
+for high accuracy on these varieties, and it released the feature table that makes
+replication possible.
+
+Two limitations matter here. The comparison is reported as a single accuracy per
+model, which is uninformative when the smallest class has 522 beans against 3,546
+for the largest: a model can raise accuracy by favouring Dermason. And the table
+contains strongly collinear descriptors, without any examination of whether all 16
+are needed. Both are addressed here through macro-averaged metrics and a feature
+ablation.
+
+\subsection{Benchmarking SVM kernels on the same dataset}
+
+Mehta et al. \cite{mehta2023} compared linear, polynomial and radial basis function
+SVM kernels with other popular classifiers on the same dataset, applying principal
+component analysis as preprocessing and using accuracy as the primary metric. The
+RBF kernel gave the best result, with an accuracy of 93.34\%, precision of 92.61\%,
+recall of 92.35\% and F1-score of 91.40\%, and the conclusion is that a nonlinear
+kernel is appropriate because the class boundaries are not hyperplanes.
+
+The study isolates the kernel choice, which is one of the decisions taken here. Its
+limitation is that PCA is applied without a nested protocol and only accuracy is
+reported, so the effect of dimensionality reduction on the minority class is not
+visible, and a single train/test configuration gives no sense of the variance.
+
+\subsection{Class imbalance and hybrid resampling}
+
+Lee, Wang and Huang \cite{lee2024} argued that the dry bean data are imbalanced and
+that plain DT, RF and SVM therefore under-perform on the minority variety. They
+combined borderline-SMOTE oversampling with k-means clustering and trained DT, RF
+and SVM on the clustered, balanced data with 10-fold cross-validation. The plain
+models reached test accuracies of 88.83\% (DT), 83.25\% (RF) and 93.75\% (SVM),
+while BLSMOTE + k-means + SVM reached 97.54\% with a precision of 0.9736 and an AUC
+of 0.9831.
+
+This is the strongest published accuracy on the dataset, but the protocol applies
+oversampling before the split, so synthetic minority samples generated from a bean
+that also appears in the test partition can inflate the measured accuracy. The
+present study therefore evaluates the original distribution first, reports macro
+F1, and tests class weighting as an explicit leakage-free alternative. The result
+in Chapter~6 is a useful negative finding rather than a contradiction of
+\cite{lee2024}.
+
+\subsection{Phenotyping, dimensionality reduction and deep alternatives}
+
+Mendigoria et al. \cite{mendigoria2021} extended the use of these descriptors
+beyond the class label, combining image-derived seed traits with supervised
+learning to predict architectural phenes of dry bean seed as well as variety. The
+motivation is agronomic: identifying seed characteristics early supports quality
+control and selection. The study confirms that the 16 variables carry information
+about more than the label, which is relevant to the interpretation in Chapter~6,
+where importance is discussed in terms of bean geometry.
+
+Gebeş and Şahin \cite{gebes2025} compared several classifiers on dry bean data and
+measured how different dimensionality reduction techniques change classification
+success. Their framing matches the question raised by the correlation analysis in
+Chapter~3: several descriptors are near-duplicates, so compression might be
+expected to help. Their work motivates the ablation in Section~6.4, which tests the
+same question with cross-validated macro F1 instead of accuracy.
+
+Phan \cite{phan2026} proposed a lightweight one-dimensional residual network that
+treats the 16 descriptors as a short sequence rather than as independent columns.
+A 1D ResNet can model interactions between neighbouring descriptors, but it also
+illustrates the cost side of the trade-off: the tabular problem that a tuned
+RBF-SVM solves in seconds is being solved with a network that needs more data, more
+tuning and more compute. This case study stays with classical learners and
+Chapter~6 quantifies what that costs in accuracy.
+
+\section{Research Gap and Motivation}
+
+Three gaps follow. Published comparisons report accuracy, or a single aggregate F1,
+on an imbalanced seven-class problem where the smallest variety contributes 3.8\%
+of the beans; macro-averaged precision, recall and F1 are needed to show whether a
+model has learned Bombay or has effectively dropped it. The published protocols
+also differ in ways that make the numbers incomparable: some use 10-fold
+cross-validation on the full dataset, some a single split, and at least one applies
+oversampling before the split. And the cost of each model is rarely reported,
+although it is a practical selection criterion for a laptop-scale workflow.
+
+This case study addresses those points on a single, fixed, stratified split; it
+selects models by cross-validated macro F1 rather than accuracy; it reports
+per-class behaviour, confusion structure and computation time alongside the
+aggregate metrics; and it tests the two preprocessing questions raised in the
+literature, redundancy and class weighting, as controlled experiments rather than
+assumptions. No new algorithm is proposed, and no claim of state-of-the-art
+accuracy is made: the contribution is a transparent, reproducible comparison.
+
+\begin{table}[htbp]
+\centering
+\caption{Comparison of the reviewed studies}
+\label{tab:literature}
+\footnotesize
+\renewcommand{\arraystretch}{1.12}
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{2.05cm}>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{2.1cm}>{\raggedright\arraybackslash}p{2.6cm}>{\raggedright\arraybackslash}X@{}}
+\toprule
+\textbf{Study} & \textbf{Objective} & \textbf{Data} & \textbf{Methods} & \textbf{Findings and limitations} \\
+\midrule
+Köklü and Özkan \cite{koklu2020} &
+Separate seven registered varieties with a vision system &
+13,611 beans, 16 features (dataset source) &
+MLP, SVM, kNN, DT; 10-fold CV &
+SVM best at 93.13\%; single accuracy figure, no per-class analysis, no feature ablation \\
+Mehta et al. \cite{mehta2023} &
+Benchmark SVM kernels and classifiers &
+Same dataset, PCA preprocessing &
+Linear, polynomial and RBF SVM; other classifiers &
+RBF SVM 93.34\% accuracy, F1 91.40\%; accuracy-only metric, single split \\
+Lee et al. \cite{lee2024} &
+Fix imbalance before classification &
+Same dataset, 80/20 split &
+BLSMOTE + k-means with DT, RF, SVM &
+97.54\% test accuracy with BLSMOTE + k-means + SVM; oversampling applied before splitting, inflating results \\
+Mendigoria et al. \cite{mendigoria2021} &
+Predict seed architectural phenes and classify variety &
+Image-derived seed traits &
+Supervised learners on morphometric traits &
+Confirms descriptors carry trait information beyond the label; abstract-level detail only \\
+Gebeş and Şahin \cite{gebes2025} &
+Measure the effect of dimensionality reduction &
+Dry bean feature table &
+Multiple classifiers with and without reduction &
+Reduction changes classification success; motivates the ablation in Section 6.4 \\
+Phan \cite{phan2026} &
+Improve accuracy with a deep sequence model &
+Dry bean feature table &
+Lightweight 1D-ResNet &
+Shows descriptor interactions can be learned; higher tuning and compute cost than classical learners \\
+\bottomrule
+\end{tabularx}
+\end{table}

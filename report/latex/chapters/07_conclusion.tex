@@ -1,0 +1,90 @@
+\chapter{CONCLUSION AND FUTURE ENHANCEMENTS}
+
+\section{Conclusion}
+
+This case study compared six multiclass classifiers on the UCI Dry Bean dataset
+under a single stratified 80/20 split, cross-validated hyperparameter search on
+the training partition and one held-out evaluation. The \BestModel{} was selected
+on cross-validated macro F1 (\BestCV{} $\pm$ \BestCVStd{}) and reached \BestAcc{}
+accuracy and \BestFOne{} macro F1 on the \TestRows{} held-out beans, with a
+one-vs-rest ROC-AUC of \BestAUC.
+
+The ranking is informative rather than surprising. The five models with nonlinear
+or locally adaptive boundaries all land within 0.007 macro F1 of each other, and
+the linear baseline sits inside that band rather than below it. Once a learner can
+express a curved boundary, the remaining differences come from how efficiently it
+uses 10,888 training beans, not from the shape of the hypothesis class. The narrow
+spread also means the winner should not be over-interpreted: a different split
+seed could reorder the middle of the table.
+
+All seven objectives were met. The morphological analysis identified size as the
+separator for Bombay and shape ratios as the separator inside the remaining cloud.
+Validation found a complete, imbalanced dataset with 21 strongly correlated
+feature pairs, and drove the preprocessing decisions. The preprocessing and split
+were implemented as pipelines refitted inside every fold, and the test suite
+asserts that the scaler is estimated from training data only. Six classifiers were
+tuned within a shared protocol and compared on accuracy, macro precision, recall
+and F1, weighted F1, ROC-AUC, confusion matrices, per-class scores and cost.
+Selection used cross-validated macro F1 with the held-out result, per-class
+behaviour and cost as corroboration, and the demonstration is a saved pipeline
+with a command-line interface that reproduces the reported predictions.
+
+Three findings are worth carrying forward. Feature selection did not help:
+dropping five of the 16 columns changed cross-validated macro F1 from
+\AblationFull{} to \AblationReduced{}, inside the fold-to-fold noise. Balancing the
+class weights did not help either (\CWNone{} against \CWBalanced{}), which
+contradicts the assumption behind much of the published resampling work on this
+dataset: the minority class is small but already well separated. And the errors
+are concentrated: \TestErrors{} of \TestRows{} beans were misclassified and
+\TopConfusion{} accounts for \TopConfusionN{} of them, so the practical limitation
+of this model is one confusable pair rather than a diffuse weakness.
+
+\section{Limitations}
+
+\textbf{Single dataset and single split.} All beans were imaged by one laboratory
+with one camera and one segmentation procedure, and the evaluation uses one
+stratified split with a fixed seed. The reported accuracy is therefore an internal
+estimate: a second laboratory would require recalibration, and repeated or nested
+cross-validation would give a tighter confidence interval than the single
+cross-validated spread in Table~\ref{tab:cv_results}.
+
+\textbf{Retained duplicates and outliers.} \DuplicateRows{} rows repeat an earlier
+row and were kept because the features are quantised pixel counts; large beans were
+kept because they are genuine Bombay specimens. Both decisions are defensible but
+neither is neutral: the effective sample size is slightly below \DatasetRows{}, and
+the model's behaviour on an unusually small Bombay is untested.
+
+\textbf{Class overlap is irreducible with these features.} Cali, Barbunya, Sira and
+Dermason overlap in the 16-dimensional space, and the remaining errors are
+geometric rather than algorithmic. Colour, texture or three-dimensional shape would
+be needed to separate them reliably.
+
+\textbf{Importance measures are not causal.} The permutation and SHAP rankings
+describe how this fitted model uses its inputs. Because 21 feature pairs correlate
+above 0.90, credit is shared arbitrarily between near-duplicate columns, and a high
+rank for \TopPermFeature{} does not establish that the ratio causes the variety
+label.
+
+\textbf{Scope of the comparison.} Six classical learners were compared. Deep
+models, stacking, calibrated ensembles and cost-sensitive variants were not
+exhausted, so the conclusion is a statement about the six families tested.
+
+\section{Future Enhancements}
+
+Repeating the split with several seeds, or nesting the hyperparameter search
+inside an outer cross-validation loop, would separate split variance from model
+variance and give a defensible interval on the reported accuracy. Obtaining images
+from a second laboratory would test whether the features survive a change of camera
+and segmentation.
+
+The most direct modelling improvement is to add colour and texture descriptors.
+The current features are purely geometric, and the confusable group differs visibly
+in colour even where shape overlaps. A two-stage model, first separating the
+size-separated varieties and then resolving the overlapping group, would match the
+structure revealed by the EDA. Calibrating the Platt-scaled probabilities with
+isotonic regression would make the confidence values usable for a rejection option,
+in which uncertain beans are referred to a human inspector.
+
+Finally, the saved pipeline is small enough to run on a single-board computer
+attached to a grading line. A latency and memory budget, together with a drift
+monitor on the input distribution, would be the next engineering step.

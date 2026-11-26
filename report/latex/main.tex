@@ -1,0 +1,145 @@
+% =====================================================================
+%  Dry Bean Variety Classification - Machine Learning Case Study
+%  Compile with XeLaTeX or LuaLaTeX (system fonts are used).
+%  On this project:  tectonic -X compile main.tex
+% =====================================================================
+\documentclass[12pt,a4paper,oneside]{report}
+
+\usepackage{fontspec}
+\setmainfont{Liberation Serif}[
+  Ligatures=TeX,
+  BoldFont=LiberationSerif-Bold,
+  ItalicFont=LiberationSerif-Italic,
+  BoldItalicFont=LiberationSerif-BoldItalic
+]
+\setsansfont{Liberation Sans}
+\setmonofont{Liberation Mono}[Scale=0.86]
+
+\usepackage[a4paper,left=1.0in,right=0.8in,top=0.8in,bottom=0.8in]{geometry}
+\usepackage{setspace}
+\onehalfspacing
+\usepackage{parskip}
+
+\usepackage{graphicx}
+\graphicspath{{../figures/}}
+\usepackage{float}
+\usepackage[font=small,labelfont=bf,labelsep=period]{caption}
+\usepackage{subcaption}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{multirow}
+\usepackage{makecell}
+\usepackage{amsmath,amssymb}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\setlist{itemsep=2pt,topsep=4pt,parsep=0pt}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\hypersetup{
+  colorlinks=true, linkcolor=black, citecolor=black, urlcolor=blue!55!black,
+  pdftitle={Comparative Analysis of Machine Learning Algorithms for Multiclass
+            Classification of Dry Bean Varieties Using Morphological Features},
+  pdfauthor={Department of Artificial Intelligence and Machine Learning}
+}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{listings}
+
+% ---------- heading styles required by the departmental format ----------
+\renewcommand{\chaptertitlename}{CHAPTER}
+\titleformat{\chapter}[display]
+  {\normalfont\bfseries\fontsize{16}{19}\selectfont\centering}
+  {\MakeUppercase{\chaptertitlename\ \thechapter}}{10pt}{\MakeUppercase}
+\titlespacing*{\chapter}{0pt}{-10pt}{24pt}
+
+\titleformat{\section}{\normalfont\bfseries\fontsize{14}{17}\selectfont}
+  {\thesection}{0.7em}{}
+\titlespacing*{\section}{0pt}{14pt}{6pt}
+
+\titleformat{\subsection}{\normalfont\bfseries\fontsize{12}{15}\selectfont}
+  {\thesubsection}{0.7em}{}
+\titlespacing*{\subsection}{0pt}{10pt}{4pt}
+
+\titleformat{\subsubsection}{\normalfont\bfseries\itshape\normalsize}
+  {\thesubsubsection}{0.7em}{}
+
+\setlength{\parindent}{1.2em}
+\setlength{\parskip}{0pt}
+\setlength{\emergencystretch}{2.5em}
+\renewcommand{\arraystretch}{1.12}
+
+% tighter float spacing keeps the report inside the page budget
+\setlength{\textfloatsep}{14pt plus 3pt minus 5pt}
+\setlength{\intextsep}{12pt plus 3pt minus 4pt}
+\setlength{\floatsep}{12pt plus 3pt minus 4pt}
+\setlength{\abovecaptionskip}{4pt}
+\setlength{\belowcaptionskip}{0pt}
+\setcounter{topnumber}{3}
+\setcounter{bottomnumber}{2}
+\setcounter{totalnumber}{4}
+\renewcommand{\topfraction}{0.92}
+\renewcommand{\bottomfraction}{0.7}
+\renewcommand{\textfraction}{0.06}
+\renewcommand{\floatpagefraction}{0.85}
+
+% ---------- headers and footers ----------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\nouppercase{\leftmark}}
+\fancyhead[R]{\small\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancypagestyle{plain}{\fancyhf{}\fancyhead[R]{\small\thepage}%
+  \renewcommand{\headrulewidth}{0pt}}
+
+\fancypagestyle{frontmatter}{\fancyhf{}\fancyhead[R]{\small\thepage}%
+  \renewcommand{\headrulewidth}{0pt}}
+
+% ---------- code listings ----------
+\definecolor{codebg}{RGB}{248,248,246}
+\lstdefinestyle{pycode}{
+  language=Python, basicstyle=\ttfamily\footnotesize,
+  backgroundcolor=\color{codebg}, frame=single, rulecolor=\color{gray!45},
+  breaklines=true, showstringspaces=false, columns=fullflexible,
+  keywordstyle=\color{blue!60!black}\bfseries,
+  commentstyle=\color{green!35!black}\itshape,
+  stringstyle=\color{red!50!black},
+  numbers=left, numberstyle=\tiny\color{gray}, numbersep=6pt,
+  xleftmargin=14pt, framexleftmargin=14pt, aboveskip=8pt, belowskip=8pt
+}
+
+% ---------- generated numbers and tables ----------
+\input{numbers}
+
+\begin{document}
+
+% ===================== preliminary pages =====================
+\pagenumbering{roman}
+\pagestyle{frontmatter}
+\input{chapters/00_front}
+
+% ===================== main body =====================
+\clearpage
+\pagenumbering{arabic}
+\pagestyle{fancy}
+
+\input{chapters/01_introduction}
+\input{chapters/02_literature}
+\input{chapters/03_dataset}
+\input{chapters/04_preprocessing}
+\input{chapters/05_models}
+\input{chapters/06_results}
+\input{chapters/07_conclusion}
+
+% ===================== back matter =====================
+\clearpage
+\addcontentsline{toc}{chapter}{REFERENCES}
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\appendix
+\input{chapters/08_appendix}
+
+\end{document}

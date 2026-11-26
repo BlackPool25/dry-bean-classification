@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+ootnotesize
+\caption{Macro F1 of the selected configuration in each cross-validation fold}
+\label{tab:cv_folds}
+\begin{tabular}{lrrrrrrr}
+\toprule
+Model & Fold 1 & Fold 2 & Fold 3 & Fold 4 & Fold 5 & Mean & Std. dev. \\
+\midrule
+Logistic Regression & 0.9425 & 0.9423 & 0.9321 & 0.9337 & 0.9364 & 0.9374 & 0.0048 \\
+K-Nearest Neighbours & 0.9397 & 0.9426 & 0.9324 & 0.9339 & 0.9424 & 0.9382 & 0.0048 \\
+RBF-SVM & 0.9491 & 0.9516 & 0.9403 & 0.9391 & 0.9419 & 0.9444 & 0.0056 \\
+Random Forest & 0.9364 & 0.9440 & 0.9354 & 0.9366 & 0.9352 & 0.9375 & 0.0037 \\
+Extra Trees & 0.9340 & 0.9402 & 0.9332 & 0.9316 & 0.9330 & 0.9344 & 0.0033 \\
+Hist Gradient Boosting & 0.9425 & 0.9506 & 0.9379 & 0.9402 & 0.9406 & 0.9424 & 0.0049 \\
+\bottomrule
+\end{tabular}
+\end{table}
