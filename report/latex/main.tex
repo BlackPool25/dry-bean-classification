@@ -50,6 +50,7 @@
 
 % ---------- heading styles required by the departmental format ----------
 \renewcommand{\chaptertitlename}{CHAPTER}
+\renewcommand{\contentsname}{TABLE OF CONTENTS}
 \titleformat{\chapter}[display]
   {\normalfont\bfseries\fontsize{16}{19}\selectfont\centering}
   {\MakeUppercase{\chaptertitlename\ \thechapter}}{10pt}{\MakeUppercase}
@@ -140,6 +141,7 @@
 \bibliography{references}
 
 \appendix
+\renewcommand{\chaptertitlename}{APPENDIX}
 \input{chapters/08_appendix}
 
 \end{document}
