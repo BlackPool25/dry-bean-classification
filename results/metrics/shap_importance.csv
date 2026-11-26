@@ -1,0 +1,17 @@
+feature,mean_abs_shap
+Perimeter,0.02707
+ShapeFactor1,0.02652
+ShapeFactor2,0.02473
+ShapeFactor3,0.02402
+MajorAxisLength,0.02389
+MinorAxisLength,0.02197
+Compactness,0.02113
+Area,0.02003
+roundness,0.0194
+ConvexArea,0.01913
+AspectRation,0.01842
+EquivDiameter,0.01829
+Eccentricity,0.01748
+ShapeFactor4,0.00867
+Solidity,0.00348
+Extent,0.00167

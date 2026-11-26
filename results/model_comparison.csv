@@ -1,0 +1,7 @@
+model,label,accuracy,precision_macro,recall_macro,f1_macro,f1_weighted,roc_auc_ovr_macro,predict_time_ms,search_time_s,cv_macro_f1_mean
+svm_rbf,RBF-SVM,0.9258,0.9383,0.9362,0.9372,0.9258,0.9953,167.4135,7.43,0.9444
+hist_gradient_boosting,Hist Gradient Boosting,0.9229,0.9368,0.9328,0.9347,0.9229,0.9948,11.0872,71.57,0.9424
+logistic_regression,Logistic Regression,0.9214,0.9357,0.9323,0.9337,0.9217,0.9949,0.6081,2.72,0.9374
+extra_trees,Extra Trees,0.9207,0.9356,0.9306,0.9328,0.9208,0.9943,71.9351,24.38,0.9344
+random_forest,Random Forest,0.9196,0.9334,0.9297,0.9314,0.9195,0.9936,51.5085,183.95,0.9375
+knn,K-Nearest Neighbours,0.9174,0.9328,0.9279,0.93,0.9175,0.987,19.4055,4.07,0.9382
