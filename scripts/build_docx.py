@@ -266,6 +266,109 @@ def add_caption_lists(doc: Document) -> None:
         anchor = clone
 
 
+COVER_SPACING = {
+    "BMS INSTITUTE": 0,
+    "Yelahanka": 2,
+    "DEPARTMENT OF ARTIFICIAL": 34,
+    "MACHINE LEARNING CASE STUDY REPORT": 58,
+    "Comparative Analysis": 24,
+    "Submitted in partial fulfilment": 58,
+    "V Semester": 10,
+    "in": 8,
+    "Artificial Intelligence and Machine Learning": 8,
+    "Submitted by": 46,
+    "Shreyas S Joshi": 8,
+    "Athmabhiram": 4,
+    "Gowtham M R": 4,
+    "P Navadeep Reddy": 4,
+    "Under the guidance of": 46,
+    "Prof Balaraju G": 8,
+    "Assistant Professor": 4,
+    "2026-2027": 68,
+}
+
+
+def _cover_lines(doc: Document):
+    """Split the title page into (text, bold) lines, dropping the old markup."""
+    from docx.text.paragraph import Paragraph
+
+    body = doc.element.body
+    old, lines = [], []
+    for child in body:
+        if not child.tag.endswith("}p"):
+            continue
+        ppr = child.find(qn("w:pPr"))
+        style = ppr.find(qn("w:pStyle")) if ppr is not None else None
+        if style is not None and style.get(qn("w:val")) == "Heading1":
+            text = "".join(t.text or "" for t in child.iter(qn("w:t")))
+            if "CERTIFICATE" in text.upper():
+                break
+        old.append(child)
+        buffer, bold = "", False
+        for run in Paragraph(child, doc).runs:
+            for piece in run.text.split("\n"):
+                if piece:
+                    buffer += piece
+                    bold = bold or bool(run.bold)
+                else:
+                    if buffer.strip():
+                        lines.append((buffer.strip(), bold))
+                    buffer, bold = "", False
+            if run.text.endswith("\n") is False and run._r.findall(qn("w:br")):
+                if buffer.strip():
+                    lines.append((buffer.strip(), bold))
+                buffer, bold = "", False
+        if buffer.strip():
+            lines.append((buffer.strip(), bold))
+    for element in old:
+        body.remove(element)
+    return lines
+
+
+def center_cover(doc: Document) -> None:
+    """Rebuild the title page as centred lines with the LaTeX vertical rhythm.
+
+    pandoc keeps the whole cover in one justified paragraph with soft breaks,
+    which both stretches the lines and loses the spacing. The lines are
+    re-emitted as separate centred paragraphs with explicit space before.
+    """
+    lines = _cover_lines(doc)
+    if not lines:
+        return
+
+    from docx.text.paragraph import Paragraph
+
+    body = doc.element.body
+    anchor = None
+    for child in body:
+        if child.tag.endswith("}p"):
+            ppr = child.find(qn("w:pPr"))
+            style = ppr.find(qn("w:pStyle")) if ppr is not None else None
+            if style is not None and style.get(qn("w:val")) == "Heading1":
+                text = "".join(t.text or "" for t in child.iter(qn("w:t")))
+                if "CERTIFICATE" in text.upper():
+                    anchor = child
+                    break
+
+    for text, bold in lines:
+        para = doc.add_paragraph()
+        run = para.add_run(text)
+        run.font.name = FONT
+        run.font.size = Pt(12)
+        run.bold = bold
+        para.alignment = WD_ALIGN_PARAGRAPH.CENTER
+        para.paragraph_format.line_spacing = 1.15
+        before = 0
+        for prefix, value in COVER_SPACING.items():
+            if text.startswith(prefix):
+                before = value
+                break
+        para.paragraph_format.space_before = Pt(before)
+        para.paragraph_format.space_after = Pt(0)
+        if anchor is not None:
+            anchor.addprevious(para._p)
+
+
 def enable_field_updates(doc: Document) -> None:
     settings = doc.settings.element
     node = settings.find(qn("w:updateFields"))
@@ -323,6 +426,17 @@ def post_process() -> None:
                     for run in paragraph.runs:
                         run.font.size = Pt(9)
 
+    for section in doc.sections:
+        # a title page carries no running header and no page number
+        section.different_first_page_header_footer = True
+        section.first_page_header.is_linked_to_previous = False
+        section.first_page_footer.is_linked_to_previous = False
+        for paragraph in section.first_page_header.paragraphs:
+            paragraph.text = ""
+        for paragraph in section.first_page_footer.paragraphs:
+            paragraph.text = ""
+
+    center_cover(doc)
     move_toc(doc)
     add_caption_lists(doc)
     enable_field_updates(doc)
