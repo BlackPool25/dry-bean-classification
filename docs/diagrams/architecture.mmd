@@ -1,0 +1,41 @@
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Liberation Serif","fontSize":"14px","primaryColor":"#EAF2FA","primaryTextColor":"#111111","primaryBorderColor":"#4C72B0","lineColor":"#444444"}} }%%
+flowchart LR
+    subgraph DATA["data/"]
+        R1["raw/Dry_Bean_Dataset.xlsx"]
+        R2["processed/train.csv, test.csv"]
+    end
+    subgraph SRC["src/"]
+        S1["config.py"]
+        S2["data_loader.py"]
+        S3["preprocessing.py"]
+        S4["eda.py"]
+        S5["train.py"]
+        S6["evaluate.py"]
+        S7["explainability.py"]
+        S8["predict.py"]
+    end
+    subgraph OUT["results/ and models/"]
+        O1["metrics/*.csv, *.json"]
+        O2["model_comparison.csv"]
+        O3["best_model.joblib"]
+        O4["predictions/*.npy"]
+    end
+    subgraph REP["report/"]
+        P1["latex/ -> main.pdf"]
+        P2["docx/ -> .docx"]
+    end
+
+    R1 --> S2 --> S3 --> S5
+    S2 --> S4
+    S5 --> S6 --> S7
+    S5 --> O3
+    S6 --> O1
+    S6 --> O2
+    S6 --> O4
+    S7 --> O1
+    S3 --> R2
+    S8 --> O3
+    O1 --> P1
+    O2 --> P1
+    O1 --> P2
+    O2 --> P2
