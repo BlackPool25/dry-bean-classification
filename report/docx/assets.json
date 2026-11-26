@@ -1,0 +1,1502 @@
+{
+  "tables": {
+    "tab:dataset_summary": {
+      "caption": "Summary of the dry bean dataset as distributed by UCI",
+      "header": [
+        "Property",
+        "Details"
+      ],
+      "rows": [
+        [
+          "Dataset name",
+          "Dry Bean Dataset (UCI ID 602)"
+        ],
+        [
+          "Provider",
+          "UCI Machine Learning Repository"
+        ],
+        [
+          "Source URL",
+          "\\url{https://archive.ics.uci.edu/dataset/602/dry+bean+dataset}"
+        ],
+        [
+          "DOI",
+          "10.24432/C50S4B"
+        ],
+        [
+          "Date accessed",
+          "2026-11-26"
+        ],
+        [
+          "Licence",
+          "CC BY 4.0"
+        ],
+        [
+          "File format",
+          "Excel workbook (.xlsx), also ARFF and TXT"
+        ],
+        [
+          "Records",
+          "13,611"
+        ],
+        [
+          "Columns",
+          "17 (16 features + 1 target)"
+        ],
+        [
+          "Target variable",
+          "Class (7 nominal varieties)"
+        ],
+        [
+          "Task type",
+          "Supervised multiclass classification"
+        ],
+        [
+          "Missing values",
+          "0"
+        ],
+        [
+          "Duplicate rows",
+          "68"
+        ],
+        [
+          "Class imbalance ratio",
+          "6.79:1 (majority:minority)"
+        ]
+      ]
+    },
+    "tab:class_counts": {
+      "caption": "Class distribution of the target variable",
+      "header": [
+        "Sl. No.",
+        "Variety",
+        "Beans",
+        "Share (\\%)"
+      ],
+      "rows": [
+        [
+          "1",
+          "Seker",
+          "2,027",
+          "14.89"
+        ],
+        [
+          "2",
+          "Barbunya",
+          "1,322",
+          "9.71"
+        ],
+        [
+          "3",
+          "Bombay",
+          "522",
+          "3.84"
+        ],
+        [
+          "4",
+          "Cali",
+          "1,630",
+          "11.98"
+        ],
+        [
+          "5",
+          "Dermason",
+          "3,546",
+          "26.05"
+        ],
+        [
+          "6",
+          "Horoz",
+          "1,928",
+          "14.17"
+        ],
+        [
+          "7",
+          "Sira",
+          "2,636",
+          "19.37"
+        ],
+        [
+          "",
+          "Total",
+          "13,611",
+          "100.00"
+        ]
+      ]
+    },
+    "tab:attributes": {
+      "caption": "Attributes of the dataset, in the order distributed by UCI",
+      "header": [
+        "No.",
+        "Attribute",
+        "Type",
+        "Description",
+        "Role"
+      ],
+      "rows": [
+        [
+          "1",
+          "Area",
+          "Integer",
+          "Pixels inside the bean boundary",
+          "Input"
+        ],
+        [
+          "2",
+          "Perimeter",
+          "Continuous",
+          "Length of the bean boundary",
+          "Input"
+        ],
+        [
+          "3",
+          "MajorAxisLength",
+          "Continuous",
+          "Longest line through the bean",
+          "Input"
+        ],
+        [
+          "4",
+          "MinorAxisLength",
+          "Continuous",
+          "Shortest line through the bean",
+          "Input"
+        ],
+        [
+          "5",
+          "AspectRation",
+          "Continuous",
+          "MajorAxisLength / MinorAxisLength",
+          "Input"
+        ],
+        [
+          "6",
+          "Eccentricity",
+          "Continuous",
+          "Eccentricity of the equivalent ellipse",
+          "Input"
+        ],
+        [
+          "7",
+          "ConvexArea",
+          "Integer",
+          "Pixels in the smallest enclosing convex polygon",
+          "Input"
+        ],
+        [
+          "8",
+          "EquivDiameter",
+          "Continuous",
+          "Diameter of a circle of equal area",
+          "Input"
+        ],
+        [
+          "9",
+          "Extent",
+          "Continuous",
+          "Bean area / bounding-box area",
+          "Input"
+        ],
+        [
+          "10",
+          "Solidity",
+          "Continuous",
+          "Bean area / convex hull area",
+          "Input"
+        ],
+        [
+          "11",
+          "roundness",
+          "Continuous",
+          "4 pi Area / Perimeter squared",
+          "Input"
+        ],
+        [
+          "12",
+          "Compactness",
+          "Continuous",
+          "EquivDiameter / MajorAxisLength",
+          "Input"
+        ],
+        [
+          "13",
+          "ShapeFactor1",
+          "Continuous",
+          "Area / MajorAxisLength cubed",
+          "Input"
+        ],
+        [
+          "14",
+          "ShapeFactor2",
+          "Continuous",
+          "MinorAxisLength / MajorAxisLength",
+          "Input"
+        ],
+        [
+          "15",
+          "ShapeFactor3",
+          "Continuous",
+          "Area / (Major x Minor axis length)",
+          "Input"
+        ],
+        [
+          "16",
+          "ShapeFactor4",
+          "Continuous",
+          "Convex-hull based roundness ratio",
+          "Input"
+        ],
+        [
+          "17",
+          "Class",
+          "Nominal",
+          "One of seven registered bean varieties",
+          "Target"
+        ]
+      ]
+    },
+    "tab:descriptive": {
+      "caption": "Descriptive statistics of the 16 morphological features (n = 13,611)",
+      "header": [
+        "Feature",
+        "Mean",
+        "Std. dev.",
+        "Min",
+        "Median",
+        "Max",
+        "Skew"
+      ],
+      "rows": [
+        [
+          "Area",
+          "5.305e+04",
+          "2.932e+04",
+          "2.042e+04",
+          "4.465e+04",
+          "2.546e+05",
+          "2.95"
+        ],
+        [
+          "Perimeter",
+          "855.3",
+          "214.3",
+          "524.7",
+          "794.9",
+          "1985",
+          "1.63"
+        ],
+        [
+          "MajorAxisLength",
+          "320.1",
+          "85.69",
+          "183.6",
+          "296.9",
+          "738.9",
+          "1.36"
+        ],
+        [
+          "MinorAxisLength",
+          "202.3",
+          "44.97",
+          "122.5",
+          "192.4",
+          "460.2",
+          "2.24"
+        ],
+        [
+          "AspectRation",
+          "1.583",
+          "0.2467",
+          "1.025",
+          "1.551",
+          "2.43",
+          "0.58"
+        ],
+        [
+          "Eccentricity",
+          "0.7509",
+          "0.092",
+          "0.219",
+          "0.7644",
+          "0.9114",
+          "-1.06"
+        ],
+        [
+          "ConvexArea",
+          "5.377e+04",
+          "2.977e+04",
+          "2.068e+04",
+          "4.518e+04",
+          "2.633e+05",
+          "2.94"
+        ],
+        [
+          "EquivDiameter",
+          "253.1",
+          "59.18",
+          "161.2",
+          "238.4",
+          "569.4",
+          "1.95"
+        ],
+        [
+          "Extent",
+          "0.7497",
+          "0.0491",
+          "0.5553",
+          "0.7599",
+          "0.8662",
+          "-0.90"
+        ],
+        [
+          "Solidity",
+          "0.9871",
+          "0.0047",
+          "0.9192",
+          "0.9883",
+          "0.9947",
+          "-2.55"
+        ],
+        [
+          "roundness",
+          "0.8733",
+          "0.0595",
+          "0.4896",
+          "0.8832",
+          "0.9907",
+          "-0.64"
+        ],
+        [
+          "Compactness",
+          "0.7999",
+          "0.0617",
+          "0.6406",
+          "0.8013",
+          "0.9873",
+          "0.04"
+        ],
+        [
+          "ShapeFactor1",
+          "0.0066",
+          "0.0011",
+          "0.0028",
+          "0.0066",
+          "0.0105",
+          "-0.53"
+        ],
+        [
+          "ShapeFactor2",
+          "0.0017",
+          "0.0006",
+          "0.0006",
+          "0.0017",
+          "0.0037",
+          "0.30"
+        ],
+        [
+          "ShapeFactor3",
+          "0.6436",
+          "0.099",
+          "0.4103",
+          "0.642",
+          "0.9748",
+          "0.24"
+        ],
+        [
+          "ShapeFactor4",
+          "0.9951",
+          "0.0044",
+          "0.9477",
+          "0.9964",
+          "0.9997",
+          "-2.76"
+        ]
+      ]
+    },
+    "tab:split": {
+      "caption": "Stratified 80/20 partition: class counts are preserved in both subsets",
+      "header": [
+        "Variety",
+        "Full dataset",
+        "Share (\\%)",
+        "Training",
+        "Test"
+      ],
+      "rows": [
+        [
+          "Seker",
+          "2,027",
+          "14.9",
+          "1,621",
+          "406"
+        ],
+        [
+          "Barbunya",
+          "1,322",
+          "9.7",
+          "1,057",
+          "265"
+        ],
+        [
+          "Bombay",
+          "522",
+          "3.8",
+          "418",
+          "104"
+        ],
+        [
+          "Cali",
+          "1,630",
+          "12.0",
+          "1,304",
+          "326"
+        ],
+        [
+          "Dermason",
+          "3,546",
+          "26.1",
+          "2,837",
+          "709"
+        ],
+        [
+          "Horoz",
+          "1,928",
+          "14.2",
+          "1,542",
+          "386"
+        ],
+        [
+          "Sira",
+          "2,636",
+          "19.4",
+          "2,109",
+          "527"
+        ]
+      ]
+    },
+    "tab:corr_pairs": {
+      "caption": "The ten strongest feature correlations (all 21 pairs above 0.90 are listed in Appendix B)",
+      "header": [
+        "Feature pair",
+        "Pearson r"
+      ],
+      "rows": [
+        [
+          "Area -- ConvexArea",
+          "+0.9999"
+        ],
+        [
+          "Compactness -- ShapeFactor3",
+          "+0.9987"
+        ],
+        [
+          "Perimeter -- EquivDiameter",
+          "+0.9914"
+        ],
+        [
+          "AspectRation -- Compactness",
+          "-0.9877"
+        ],
+        [
+          "ConvexArea -- EquivDiameter",
+          "+0.9852"
+        ],
+        [
+          "Area -- EquivDiameter",
+          "+0.9850"
+        ],
+        [
+          "Eccentricity -- ShapeFactor3",
+          "-0.9811"
+        ],
+        [
+          "AspectRation -- ShapeFactor3",
+          "-0.9786"
+        ],
+        [
+          "Perimeter -- MajorAxisLength",
+          "+0.9773"
+        ],
+        [
+          "Eccentricity -- Compactness",
+          "-0.9703"
+        ]
+      ]
+    },
+    "tab:cv_folds": {
+      "caption": "Macro F1 of the selected configuration in each cross-validation fold",
+      "header": [
+        "Model",
+        "Fold 1",
+        "Fold 2",
+        "Fold 3",
+        "Fold 4",
+        "Fold 5",
+        "Mean",
+        "Std. dev."
+      ],
+      "rows": [
+        [
+          "Logistic Regression",
+          "0.9425",
+          "0.9423",
+          "0.9321",
+          "0.9337",
+          "0.9364",
+          "0.9374",
+          "0.0048"
+        ],
+        [
+          "K-Nearest Neighbours",
+          "0.9397",
+          "0.9426",
+          "0.9324",
+          "0.9339",
+          "0.9424",
+          "0.9382",
+          "0.0048"
+        ],
+        [
+          "RBF-SVM",
+          "0.9491",
+          "0.9516",
+          "0.9403",
+          "0.9391",
+          "0.9419",
+          "0.9444",
+          "0.0056"
+        ],
+        [
+          "Random Forest",
+          "0.9364",
+          "0.9440",
+          "0.9354",
+          "0.9366",
+          "0.9352",
+          "0.9375",
+          "0.0037"
+        ],
+        [
+          "Extra Trees",
+          "0.9340",
+          "0.9402",
+          "0.9332",
+          "0.9316",
+          "0.9330",
+          "0.9344",
+          "0.0033"
+        ],
+        [
+          "Hist Gradient Boosting",
+          "0.9425",
+          "0.9506",
+          "0.9379",
+          "0.9402",
+          "0.9406",
+          "0.9424",
+          "0.0049"
+        ]
+      ]
+    },
+    "tab:roc_class": {
+      "caption": "Per-class ROC-AUC of the selected model on the test set",
+      "header": [
+        "Variety",
+        "One-vs-rest ROC-AUC"
+      ],
+      "rows": [
+        [
+          "Seker",
+          "0.9982"
+        ],
+        [
+          "Barbunya",
+          "0.9959"
+        ],
+        [
+          "Bombay",
+          "1.0000"
+        ],
+        [
+          "Cali",
+          "0.9964"
+        ],
+        [
+          "Dermason",
+          "0.9928"
+        ],
+        [
+          "Horoz",
+          "0.9976"
+        ],
+        [
+          "Sira",
+          "0.9862"
+        ]
+      ]
+    },
+    "tab:corr_all": {
+      "caption": "All 21 feature pairs with $|r| \\ge 0.90$",
+      "header": [
+        "No.",
+        "Feature pair",
+        "Pearson r"
+      ],
+      "rows": [
+        [
+          "1",
+          "Area -- ConvexArea",
+          "+0.9999"
+        ],
+        [
+          "2",
+          "Compactness -- ShapeFactor3",
+          "+0.9987"
+        ],
+        [
+          "3",
+          "Perimeter -- EquivDiameter",
+          "+0.9914"
+        ],
+        [
+          "4",
+          "AspectRation -- Compactness",
+          "-0.9877"
+        ],
+        [
+          "5",
+          "ConvexArea -- EquivDiameter",
+          "+0.9852"
+        ],
+        [
+          "6",
+          "Area -- EquivDiameter",
+          "+0.9850"
+        ],
+        [
+          "7",
+          "Eccentricity -- ShapeFactor3",
+          "-0.9811"
+        ],
+        [
+          "8",
+          "AspectRation -- ShapeFactor3",
+          "-0.9786"
+        ],
+        [
+          "9",
+          "Perimeter -- MajorAxisLength",
+          "+0.9773"
+        ],
+        [
+          "10",
+          "Eccentricity -- Compactness",
+          "-0.9703"
+        ],
+        [
+          "11",
+          "Perimeter -- ConvexArea",
+          "+0.9677"
+        ],
+        [
+          "12",
+          "Area -- Perimeter",
+          "+0.9667"
+        ],
+        [
+          "13",
+          "MajorAxisLength -- EquivDiameter",
+          "+0.9617"
+        ],
+        [
+          "14",
+          "Area -- MinorAxisLength",
+          "+0.9516"
+        ],
+        [
+          "15",
+          "MinorAxisLength -- ConvexArea",
+          "+0.9513"
+        ],
+        [
+          "16",
+          "MinorAxisLength -- EquivDiameter",
+          "+0.9485"
+        ],
+        [
+          "17",
+          "MinorAxisLength -- ShapeFactor1",
+          "-0.9472"
+        ],
+        [
+          "18",
+          "MajorAxisLength -- ConvexArea",
+          "+0.9326"
+        ],
+        [
+          "19",
+          "Area -- MajorAxisLength",
+          "+0.9318"
+        ],
+        [
+          "20",
+          "AspectRation -- Eccentricity",
+          "+0.9243"
+        ],
+        [
+          "21",
+          "Perimeter -- MinorAxisLength",
+          "+0.9132"
+        ]
+      ]
+    },
+    "tab:cv_results": {
+      "caption": "Cross-validated macro F1 on the training partition (5 stratified folds). Sorted by mean macro F1",
+      "header": [
+        "Model",
+        "Search",
+        "Configs",
+        "Mean",
+        "Std. dev.",
+        "Min",
+        "Max",
+        "Time (s)"
+      ],
+      "rows": [
+        [
+          "RBF-SVM",
+          "grid",
+          "16",
+          "0.9444",
+          "0.0056",
+          "0.9391",
+          "0.9516",
+          "7.4"
+        ],
+        [
+          "Hist Gradient Boosting",
+          "random",
+          "20",
+          "0.9424",
+          "0.0049",
+          "0.9379",
+          "0.9506",
+          "71.6"
+        ],
+        [
+          "K-Nearest Neighbours",
+          "grid",
+          "40",
+          "0.9382",
+          "0.0048",
+          "0.9324",
+          "0.9426",
+          "4.1"
+        ],
+        [
+          "Random Forest",
+          "random",
+          "25",
+          "0.9375",
+          "0.0037",
+          "0.9352",
+          "0.9440",
+          "183.9"
+        ],
+        [
+          "Logistic Regression",
+          "grid",
+          "5",
+          "0.9374",
+          "0.0048",
+          "0.9321",
+          "0.9425",
+          "2.7"
+        ],
+        [
+          "Extra Trees",
+          "random",
+          "25",
+          "0.9344",
+          "0.0033",
+          "0.9316",
+          "0.9402",
+          "24.4"
+        ]
+      ]
+    },
+    "tab:best_params": {
+      "caption": "Best configuration of every model, chosen by mean 5-fold CV macro F1",
+      "header": [
+        "Model",
+        "Selected hyperparameters"
+      ],
+      "rows": [
+        [
+          "RBF-SVM",
+          "C = 100.0, gamma = 0.01"
+        ],
+        [
+          "Hist Gradient Boosting",
+          "min\\_samples\\_leaf = 20, max\\_leaf\\_nodes = 63, max\\_iter = 400, learning\\_rate = 0.1, l2\\_regularization = 1.0"
+        ],
+        [
+          "K-Nearest Neighbours",
+          "metric = euclidean, n\\_neighbors = 9, weights = distance"
+        ],
+        [
+          "Random Forest",
+          "min\\_samples\\_split = 10, min\\_samples\\_leaf = 2, max\\_features = 0.5, max\\_depth = 30"
+        ],
+        [
+          "Logistic Regression",
+          "C = 100.0"
+        ],
+        [
+          "Extra Trees",
+          "min\\_samples\\_split = 10, min\\_samples\\_leaf = 2, max\\_features = 0.5, max\\_depth = 30"
+        ]
+      ]
+    },
+    "tab:model_comparison": {
+      "caption": "Performance on the 2,723-bean held-out test set. Rows are ordered by test macro F1",
+      "header": [
+        "Model",
+        "Accuracy",
+        "Macro prec.",
+        "Macro rec.",
+        "Macro F1",
+        "Weighted F1",
+        "ROC-AUC"
+      ],
+      "rows": [
+        [
+          "RBF-SVM",
+          "0.9258",
+          "0.9383",
+          "0.9362",
+          "0.9372",
+          "0.9258",
+          "0.9953"
+        ],
+        [
+          "Hist Gradient Boosting",
+          "0.9229",
+          "0.9368",
+          "0.9328",
+          "0.9347",
+          "0.9229",
+          "0.9948"
+        ],
+        [
+          "Logistic Regression",
+          "0.9214",
+          "0.9357",
+          "0.9323",
+          "0.9337",
+          "0.9217",
+          "0.9949"
+        ],
+        [
+          "Extra Trees",
+          "0.9207",
+          "0.9356",
+          "0.9306",
+          "0.9328",
+          "0.9208",
+          "0.9943"
+        ],
+        [
+          "Random Forest",
+          "0.9196",
+          "0.9334",
+          "0.9297",
+          "0.9314",
+          "0.9195",
+          "0.9936"
+        ],
+        [
+          "K-Nearest Neighbours",
+          "0.9174",
+          "0.9328",
+          "0.9279",
+          "0.9300",
+          "0.9175",
+          "0.9870"
+        ]
+      ]
+    },
+    "tab:confusion_best": {
+      "caption": "Confusion matrix of the selected model (RBF-SVM) on the test set",
+      "header": [
+        "Actual \\textbackslash{} Predicted",
+        "Seker",
+        "Barbunya",
+        "Bombay",
+        "Cali",
+        "Dermason",
+        "Horoz",
+        "Sira",
+        "Recall base"
+      ],
+      "rows": [
+        [
+          "Seker",
+          "390",
+          "2",
+          "0",
+          "0",
+          "5",
+          "0",
+          "9",
+          "406"
+        ],
+        [
+          "Barbunya",
+          "3",
+          "242",
+          "0",
+          "15",
+          "0",
+          "0",
+          "5",
+          "265"
+        ],
+        [
+          "Bombay",
+          "0",
+          "0",
+          "104",
+          "0",
+          "0",
+          "0",
+          "0",
+          "104"
+        ],
+        [
+          "Cali",
+          "2",
+          "11",
+          "0",
+          "305",
+          "0",
+          "6",
+          "2",
+          "326"
+        ],
+        [
+          "Dermason",
+          "9",
+          "0",
+          "0",
+          "0",
+          "654",
+          "0",
+          "46",
+          "709"
+        ],
+        [
+          "Horoz",
+          "0",
+          "2",
+          "0",
+          "5",
+          "5",
+          "367",
+          "7",
+          "386"
+        ],
+        [
+          "Sira",
+          "8",
+          "3",
+          "0",
+          "0",
+          "51",
+          "6",
+          "459",
+          "527"
+        ],
+        [
+          "Total",
+          "412",
+          "260",
+          "104",
+          "325",
+          "715",
+          "379",
+          "528",
+          "2723"
+        ]
+      ]
+    },
+    "tab:per_class": {
+      "caption": "Per-class performance of the selected model (RBF-SVM)",
+      "header": [
+        "Variety",
+        "Precision",
+        "Recall",
+        "F1-score",
+        "Support"
+      ],
+      "rows": [
+        [
+          "Seker",
+          "0.9466",
+          "0.9606",
+          "0.9535",
+          "406"
+        ],
+        [
+          "Barbunya",
+          "0.9308",
+          "0.9132",
+          "0.9219",
+          "265"
+        ],
+        [
+          "Bombay",
+          "1.0000",
+          "1.0000",
+          "1.0000",
+          "104"
+        ],
+        [
+          "Cali",
+          "0.9385",
+          "0.9356",
+          "0.9370",
+          "326"
+        ],
+        [
+          "Dermason",
+          "0.9147",
+          "0.9224",
+          "0.9185",
+          "709"
+        ],
+        [
+          "Horoz",
+          "0.9683",
+          "0.9508",
+          "0.9595",
+          "386"
+        ],
+        [
+          "Sira",
+          "0.8693",
+          "0.8710",
+          "0.8701",
+          "527"
+        ],
+        [
+          "Macro average",
+          "0.9383",
+          "0.9362",
+          "0.9372",
+          "2723"
+        ]
+      ]
+    },
+    "tab:confusion_pairs": {
+      "caption": "Most frequent confusions produced by the selected model",
+      "header": [
+        "Actual variety",
+        "Predicted as",
+        "Beans"
+      ],
+      "rows": [
+        [
+          "Sira",
+          "Dermason",
+          "51"
+        ],
+        [
+          "Dermason",
+          "Sira",
+          "46"
+        ],
+        [
+          "Barbunya",
+          "Cali",
+          "15"
+        ],
+        [
+          "Cali",
+          "Barbunya",
+          "11"
+        ],
+        [
+          "Seker",
+          "Sira",
+          "9"
+        ],
+        [
+          "Dermason",
+          "Seker",
+          "9"
+        ]
+      ]
+    },
+    "tab:permutation": {
+      "caption": "Permutation importance on the test set (8 repeats per feature)",
+      "header": [
+        "Rank",
+        "Feature",
+        "Drop in macro F1",
+        "Std. dev."
+      ],
+      "rows": [
+        [
+          "1",
+          "roundness",
+          "0.1012",
+          "0.0041"
+        ],
+        [
+          "2",
+          "ShapeFactor4",
+          "0.0932",
+          "0.0051"
+        ],
+        [
+          "3",
+          "AspectRation",
+          "0.0530",
+          "0.0046"
+        ],
+        [
+          "4",
+          "ShapeFactor1",
+          "0.0388",
+          "0.0013"
+        ],
+        [
+          "5",
+          "MinorAxisLength",
+          "0.0332",
+          "0.0034"
+        ],
+        [
+          "6",
+          "Eccentricity",
+          "0.0282",
+          "0.0026"
+        ],
+        [
+          "7",
+          "Perimeter",
+          "0.0282",
+          "0.0027"
+        ],
+        [
+          "8",
+          "EquivDiameter",
+          "0.0244",
+          "0.0022"
+        ],
+        [
+          "9",
+          "ConvexArea",
+          "0.0231",
+          "0.0025"
+        ],
+        [
+          "10",
+          "Area",
+          "0.0227",
+          "0.0024"
+        ],
+        [
+          "11",
+          "MajorAxisLength",
+          "0.0210",
+          "0.0027"
+        ],
+        [
+          "12",
+          "ShapeFactor3",
+          "0.0199",
+          "0.0023"
+        ],
+        [
+          "13",
+          "Compactness",
+          "0.0181",
+          "0.0026"
+        ],
+        [
+          "14",
+          "Solidity",
+          "0.0169",
+          "0.0026"
+        ],
+        [
+          "15",
+          "ShapeFactor2",
+          "0.0046",
+          "0.0020"
+        ],
+        [
+          "16",
+          "Extent",
+          "0.0038",
+          "0.0021"
+        ]
+      ]
+    },
+    "tab:ablation": {
+      "caption": "Effect of dropping the five redundant size features (Random Forest, identical hyperparameters)",
+      "header": [
+        "Feature set",
+        "Features",
+        "CV macro F1",
+        "Std. dev."
+      ],
+      "rows": [
+        [
+          "all 16 features",
+          "16",
+          "0.9362",
+          "0.0031"
+        ],
+        [
+          "11 features reduced",
+          "11",
+          "0.9372",
+          "0.0029"
+        ]
+      ]
+    },
+    "tab:class_weight": {
+      "caption": "Effect of balanced class weights on the selected model",
+      "header": [
+        "Model",
+        "class\\_weight",
+        "CV macro F1",
+        "Std. dev."
+      ],
+      "rows": [
+        [
+          "RBF-SVM",
+          "none",
+          "0.9420",
+          "0.0052"
+        ],
+        [
+          "RBF-SVM",
+          "balanced",
+          "0.9407",
+          "0.0052"
+        ]
+      ]
+    },
+    "tab:sample_predictions": {
+      "caption": "Representative test beans, one per variety, classified by the saved pipeline",
+      "header": [
+        "\\#",
+        "Area",
+        "Perimeter",
+        "Compactness",
+        "roundness",
+        "ShapeFactor1",
+        "Extent",
+        "Actual",
+        "Predicted",
+        "Correct",
+        "P(max)"
+      ],
+      "rows": [
+        [
+          "1",
+          "41,586",
+          "745",
+          "0.8772",
+          "0.9403",
+          "0.0063",
+          "0.7438",
+          "Seker",
+          "Seker",
+          "Yes",
+          "0.994"
+        ],
+        [
+          "2",
+          "71,236",
+          "1,055",
+          "0.8705",
+          "0.8037",
+          "0.0049",
+          "0.8264",
+          "Barbunya",
+          "Barbunya",
+          "Yes",
+          "1.000"
+        ],
+        [
+          "3",
+          "152,884",
+          "1,470",
+          "0.8433",
+          "0.8896",
+          "0.0034",
+          "0.7761",
+          "Bombay",
+          "Bombay",
+          "Yes",
+          "0.999"
+        ],
+        [
+          "4",
+          "94,276",
+          "1,161",
+          "0.7775",
+          "0.8791",
+          "0.0047",
+          "0.8272",
+          "Cali",
+          "Cali",
+          "Yes",
+          "0.987"
+        ],
+        [
+          "5",
+          "37,349",
+          "718",
+          "0.8215",
+          "0.9115",
+          "0.0071",
+          "0.7346",
+          "Dermason",
+          "Dermason",
+          "Yes",
+          "0.723"
+        ],
+        [
+          "6",
+          "45,473",
+          "835",
+          "0.7163",
+          "0.8204",
+          "0.0074",
+          "0.7841",
+          "Horoz",
+          "Horoz",
+          "Yes",
+          "0.959"
+        ],
+        [
+          "7",
+          "43,550",
+          "790",
+          "0.7685",
+          "0.8764",
+          "0.0070",
+          "0.7828",
+          "Sira",
+          "Sira",
+          "Yes",
+          "0.936"
+        ]
+      ]
+    }
+  },
+  "figures": {
+    "fig_3_1_class_distribution.png": "fig_3_1_class_distribution.png",
+    "fig_3_2_missing_values.png": "fig_3_2_missing_values.png",
+    "fig_3_3_feature_histograms.png": "fig_3_3_feature_histograms.png",
+    "fig_3_4_boxplots_by_class.png": "fig_3_4_boxplots_by_class.png",
+    "fig_3_5_correlation_heatmap.png": "fig_3_5_correlation_heatmap.png",
+    "fig_3_6_pairplot.png": "fig_3_6_pairplot.png",
+    "fig_3_7_classwise_comparison.png": "fig_3_7_classwise_comparison.png",
+    "fig_3_8_scatter_relationships.png": "fig_3_8_scatter_relationships.png",
+    "fig_3_9_outlier_analysis.png": "fig_3_9_outlier_analysis.png",
+    "fig_3_10_discriminative_power.png": "fig_3_10_discriminative_power.png",
+    "fig_4_1_split.png": "fig_4_1_split.png",
+    "fig_5_1_workflow.png": "fig_5_1_workflow.png",
+    "fig_5_2_svm_grid_search.png": "fig_5_2_svm_grid_search.png",
+    "fig_5_3_architecture.png": "fig_5_3_architecture.png",
+    "fig_6_1_model_comparison.png": "fig_6_1_model_comparison.png",
+    "fig_6_2_confusion_matrices.png": "fig_6_2_confusion_matrices.png",
+    "fig_6_3_confusion_matrix_best.png": "fig_6_3_confusion_matrix_best.png",
+    "fig_6_4_per_class_metrics.png": "fig_6_4_per_class_metrics.png",
+    "fig_6_5_roc_curves.png": "fig_6_5_roc_curves.png",
+    "fig_6_6_cv_fold_distribution.png": "fig_6_6_cv_fold_distribution.png",
+    "fig_6_7_error_analysis.png": "fig_6_7_error_analysis.png",
+    "fig_6_8_misclassified_scatter.png": "fig_6_8_misclassified_scatter.png",
+    "fig_6_9_cost_tradeoff.png": "fig_6_9_cost_tradeoff.png",
+    "fig_6_10_permutation_importance.png": "fig_6_10_permutation_importance.png",
+    "fig_6_11_tree_feature_importance.png": "fig_6_11_tree_feature_importance.png",
+    "fig_6_12_shap_summary.png": "fig_6_12_shap_summary.png"
+  },
+  "numbers": {
+    "split": {
+      "random_state": 42,
+      "test_size": 0.2,
+      "stratified": true,
+      "train_rows": 10888,
+      "test_rows": 2723,
+      "train_pct": 79.99,
+      "test_pct": 20.01,
+      "train_class_counts": {
+        "SEKER": 1621,
+        "BARBUNYA": 1057,
+        "BOMBAY": 418,
+        "CALI": 1304,
+        "DERMASON": 2837,
+        "HOROZ": 1542,
+        "SIRA": 2109
+      },
+      "test_class_counts": {
+        "SEKER": 406,
+        "BARBUNYA": 265,
+        "BOMBAY": 104,
+        "CALI": 326,
+        "DERMASON": 709,
+        "HOROZ": 386,
+        "SIRA": 527
+      }
+    },
+    "best_model": "RBF-SVM",
+    "best_model_key": "svm_rbf",
+    "cv_mean": "0.9444",
+    "cv_std": "0.0056",
+    "test_accuracy": "0.9258",
+    "test_f1": "0.9372",
+    "test_precision": "0.9383",
+    "test_recall": "0.9362",
+    "test_f1_weighted": "0.9258",
+    "test_auc": "0.9953",
+    "predict_ms": "167.4",
+    "search_s": "7.4",
+    "runtime": "5.9",
+    "n_errors": 202,
+    "n_test": 2723,
+    "best_params": {
+      "C": 100.0,
+      "gamma": 0.01
+    },
+    "second_model": "Hist Gradient Boosting",
+    "second_f1": "0.9347",
+    "worst_model": "K-Nearest Neighbours",
+    "worst_f1": "0.9300",
+    "shap_top": null,
+    "perm_top": "roundness",
+    "perm_top_value": "0.1012",
+    "ablation_16": "0.9362",
+    "ablation_11": "0.9372",
+    "cw_none": "0.9420",
+    "cw_balanced": "0.9407",
+    "top_pair": "Sira -> Dermason",
+    "top_pair_n": 51,
+    "auc_by_class": {
+      "SEKER": 0.9982,
+      "BARBUNYA": 0.9959,
+      "BOMBAY": 1.0,
+      "CALI": 0.9964,
+      "DERMASON": 0.9928,
+      "HOROZ": 0.9976,
+      "SIRA": 0.9862
+    }
+  }
+}
