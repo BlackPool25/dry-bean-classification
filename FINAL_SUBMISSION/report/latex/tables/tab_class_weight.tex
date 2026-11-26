@@ -1,0 +1,14 @@
+\begin{table}[htbp]
+\centering
+\small
+\caption{Effect of balanced class weights on the selected model}
+\label{tab:class_weight}
+\begin{tabular}{llrr}
+\toprule
+Model & class\_weight & CV macro F1 & Std. dev. \\
+\midrule
+RBF-SVM & none & 0.9420 & 0.0052 \\
+RBF-SVM & balanced & 0.9407 & 0.0052 \\
+\bottomrule
+\end{tabular}
+\end{table}

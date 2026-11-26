@@ -1,0 +1,28 @@
+%%{init: {"theme":"base","themeVariables":{"fontFamily":"Liberation Serif","fontSize":"15px","primaryColor":"#EAF2FA","primaryTextColor":"#111111","primaryBorderColor":"#4C72B0","lineColor":"#444444","clusterBkg":"#FBFBF9","clusterBorder":"#B8C2CC"}} }%%
+flowchart TB
+    subgraph R1["Data preparation and exploratory analysis"]
+        direction LR
+        A1["UCI Dry Bean dataset<br/>13,611 x 17"] --> A2["Validation<br/>missing, duplicates,<br/>ranges, labels"]
+        A2 --> A3["Stratified 80/20 split<br/>random_state = 42"]
+        A3 --> A4["EDA<br/>distributions,<br/>correlation, outliers"]
+    end
+
+    subgraph R2["Model development"]
+        direction LR
+        B1["Leakage-safe pipelines<br/>StandardScaler fitted<br/>on training folds only"] --> B2["5-fold stratified CV<br/>scoring = macro F1"]
+        B2 --> B3["Grid search<br/>LR, KNN, RBF-SVM"]
+        B3 --> B4["Random search<br/>RF, Extra Trees, HistGB"]
+    end
+
+    subgraph R3["Assessment and delivery"]
+        direction LR
+        C1{"Selection<br/>mean CV<br/>macro F1"} --> C2["Held-out test metrics<br/>accuracy, P, R, F1,<br/>ROC-AUC, confusion matrix"]
+        C2 --> C3["Error analysis and<br/>interpretation<br/>permutation, SHAP"]
+        C3 --> C4["best_model.joblib<br/>prediction CLI<br/>LaTeX and DOCX report"]
+    end
+
+    A4 --> B1
+    B4 --> C1
+
+    style C1 fill:#F6F1E7,stroke:#D55E00,stroke-width:1.6px
+    style C4 fill:#EAF5F0,stroke:#009E73,stroke-width:1.6px

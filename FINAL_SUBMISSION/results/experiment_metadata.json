@@ -1,0 +1,233 @@
+{
+  "selection_metric": "f1_macro",
+  "cv_folds": 5,
+  "random_state": 42,
+  "best_model": "svm_rbf",
+  "best_model_label": "RBF-SVM",
+  "cv_macro_f1_mean": 0.9444,
+  "cv_macro_f1_std": 0.00557,
+  "best_params": {
+    "C": 100.0,
+    "gamma": 0.01
+  },
+  "ranking": [
+    {
+      "model": "svm_rbf",
+      "cv_macro_f1_mean": 0.9444,
+      "cv_macro_f1_std": 0.00557
+    },
+    {
+      "model": "hist_gradient_boosting",
+      "cv_macro_f1_mean": 0.94236,
+      "cv_macro_f1_std": 0.00491
+    },
+    {
+      "model": "knn",
+      "cv_macro_f1_mean": 0.9382,
+      "cv_macro_f1_std": 0.00479
+    },
+    {
+      "model": "random_forest",
+      "cv_macro_f1_mean": 0.9375,
+      "cv_macro_f1_std": 0.00367
+    },
+    {
+      "model": "logistic_regression",
+      "cv_macro_f1_mean": 0.9374,
+      "cv_macro_f1_std": 0.00481
+    },
+    {
+      "model": "extra_trees",
+      "cv_macro_f1_mean": 0.9344,
+      "cv_macro_f1_std": 0.00334
+    }
+  ],
+  "feature_ablation": [
+    {
+      "feature_set": "all_16_features",
+      "n_features": 16,
+      "cv_macro_f1_mean": 0.93621,
+      "cv_macro_f1_std": 0.00306
+    },
+    {
+      "feature_set": "11_features_reduced",
+      "n_features": 11,
+      "cv_macro_f1_mean": 0.93724,
+      "cv_macro_f1_std": 0.00287
+    }
+  ],
+  "class_weight_experiment": [
+    {
+      "model": "RBF-SVM",
+      "class_weight": "none",
+      "cv_macro_f1_mean": 0.94204,
+      "cv_macro_f1_std": 0.00522
+    },
+    {
+      "model": "RBF-SVM",
+      "class_weight": "balanced",
+      "cv_macro_f1_mean": 0.94068,
+      "cv_macro_f1_std": 0.00521
+    }
+  ],
+  "svm_probability_refit_s": 1.49,
+  "test_metrics": [
+    {
+      "model": "svm_rbf",
+      "label": "RBF-SVM",
+      "accuracy": 0.9258,
+      "precision_macro": 0.9383,
+      "recall_macro": 0.9362,
+      "f1_macro": 0.9372,
+      "f1_weighted": 0.9258,
+      "roc_auc_ovr_macro": 0.9953,
+      "predict_time_ms": 167.4135,
+      "search_time_s": 7.43,
+      "cv_macro_f1_mean": 0.9444
+    },
+    {
+      "model": "hist_gradient_boosting",
+      "label": "Hist Gradient Boosting",
+      "accuracy": 0.9229,
+      "precision_macro": 0.9368,
+      "recall_macro": 0.9328,
+      "f1_macro": 0.9347,
+      "f1_weighted": 0.9229,
+      "roc_auc_ovr_macro": 0.9948,
+      "predict_time_ms": 11.0872,
+      "search_time_s": 71.57,
+      "cv_macro_f1_mean": 0.9424
+    },
+    {
+      "model": "logistic_regression",
+      "label": "Logistic Regression",
+      "accuracy": 0.9214,
+      "precision_macro": 0.9357,
+      "recall_macro": 0.9323,
+      "f1_macro": 0.9337,
+      "f1_weighted": 0.9217,
+      "roc_auc_ovr_macro": 0.9949,
+      "predict_time_ms": 0.6081,
+      "search_time_s": 2.72,
+      "cv_macro_f1_mean": 0.9374
+    },
+    {
+      "model": "extra_trees",
+      "label": "Extra Trees",
+      "accuracy": 0.9207,
+      "precision_macro": 0.9356,
+      "recall_macro": 0.9306,
+      "f1_macro": 0.9328,
+      "f1_weighted": 0.9208,
+      "roc_auc_ovr_macro": 0.9943,
+      "predict_time_ms": 71.9351,
+      "search_time_s": 24.38,
+      "cv_macro_f1_mean": 0.9344
+    },
+    {
+      "model": "random_forest",
+      "label": "Random Forest",
+      "accuracy": 0.9196,
+      "precision_macro": 0.9334,
+      "recall_macro": 0.9297,
+      "f1_macro": 0.9314,
+      "f1_weighted": 0.9195,
+      "roc_auc_ovr_macro": 0.9936,
+      "predict_time_ms": 51.5085,
+      "search_time_s": 183.95,
+      "cv_macro_f1_mean": 0.9375
+    },
+    {
+      "model": "knn",
+      "label": "K-Nearest Neighbours",
+      "accuracy": 0.9174,
+      "precision_macro": 0.9328,
+      "recall_macro": 0.9279,
+      "f1_macro": 0.93,
+      "f1_weighted": 0.9175,
+      "roc_auc_ovr_macro": 0.987,
+      "predict_time_ms": 19.4055,
+      "search_time_s": 4.07,
+      "cv_macro_f1_mean": 0.9382
+    }
+  ],
+  "best_model_test": {
+    "model": "svm_rbf",
+    "label": "RBF-SVM",
+    "accuracy": 0.9258,
+    "precision_macro": 0.9383,
+    "recall_macro": 0.9362,
+    "f1_macro": 0.9372,
+    "f1_weighted": 0.9258,
+    "roc_auc_ovr_macro": 0.9953,
+    "predict_time_ms": 167.4135,
+    "search_time_s": 7.43,
+    "cv_macro_f1_mean": 0.9444
+  },
+  "roc_auc_ovr_macro_best": 0.9953,
+  "top_confusions": [
+    {
+      "actual": "SIRA",
+      "predicted": "DERMASON",
+      "count": 51
+    },
+    {
+      "actual": "DERMASON",
+      "predicted": "SIRA",
+      "count": 46
+    },
+    {
+      "actual": "BARBUNYA",
+      "predicted": "CALI",
+      "count": 15
+    },
+    {
+      "actual": "CALI",
+      "predicted": "BARBUNYA",
+      "count": 11
+    },
+    {
+      "actual": "SEKER",
+      "predicted": "SIRA",
+      "count": 9
+    },
+    {
+      "actual": "DERMASON",
+      "predicted": "SEKER",
+      "count": 9
+    }
+  ],
+  "permutation_importance_top5": [
+    {
+      "feature": "roundness",
+      "importance_mean": 0.10121
+    },
+    {
+      "feature": "ShapeFactor4",
+      "importance_mean": 0.09318
+    },
+    {
+      "feature": "AspectRation",
+      "importance_mean": 0.05297
+    },
+    {
+      "feature": "ShapeFactor1",
+      "importance_mean": 0.03879
+    },
+    {
+      "feature": "MinorAxisLength",
+      "importance_mean": 0.03321
+    }
+  ],
+  "shap": {
+    "status": "ok",
+    "top_features": [
+      "Perimeter",
+      "ShapeFactor1",
+      "ShapeFactor2",
+      "ShapeFactor3",
+      "MajorAxisLength"
+    ]
+  },
+  "pipeline_runtime_s": 353.7
+}

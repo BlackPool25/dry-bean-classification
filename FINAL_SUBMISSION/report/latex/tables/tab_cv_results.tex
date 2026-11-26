@@ -1,0 +1,18 @@
+\begin{table}[htbp]
+\centering
+\footnotesize
+\caption{Cross-validated macro F1 on the training partition (5 stratified folds). Sorted by mean macro F1}
+\label{tab:cv_results}
+\begin{tabular}{llcrrrrr}
+\toprule
+Model & Search & Configs & Mean & Std. dev. & Min & Max & Time (s) \\
+\midrule
+RBF-SVM & grid & 16 & 0.9444 & 0.0056 & 0.9391 & 0.9516 & 7.4 \\
+Hist Gradient Boosting & random & 20 & 0.9424 & 0.0049 & 0.9379 & 0.9506 & 71.6 \\
+K-Nearest Neighbours & grid & 40 & 0.9382 & 0.0048 & 0.9324 & 0.9426 & 4.1 \\
+Random Forest & random & 25 & 0.9375 & 0.0037 & 0.9352 & 0.9440 & 183.9 \\
+Logistic Regression & grid & 5 & 0.9374 & 0.0048 & 0.9321 & 0.9425 & 2.7 \\
+Extra Trees & random & 25 & 0.9344 & 0.0033 & 0.9316 & 0.9402 & 24.4 \\
+\bottomrule
+\end{tabular}
+\end{table}

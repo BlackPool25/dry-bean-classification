@@ -1,0 +1,131 @@
+\chapter{SOURCE CODE AND REPRODUCIBILITY}
+
+\section{Repository Structure}
+
+The complete implementation, the executed notebooks, the saved model and the
+generated results are kept in a single Git repository. Figure~\ref{fig:arch}
+shows how the modules relate: the raw workbook enters through the loader, the
+split is written once to \texttt{data/processed/}, and every downstream artefact
+is derived from \texttt{results/}.
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=\textwidth]{fig_5_3_architecture.png}
+\caption{Module and artefact layout. The report is generated from the files in
+\texttt{results/}, not typed from them.}
+\label{fig:arch}
+\end{figure}
+
+\begin{verbatim}
+dry-bean-classification/
+├── data/
+│   ├── raw/                  Dry_Bean_Dataset.xlsx (downloaded)
+│   └── processed/            train.csv, test.csv
+├── docs/                     departmental format, mermaid sources
+├── figures/
+│   ├── eda/                  Chapter 3 and 4 figures
+│   ├── models/               Chapter 5 figures
+│   └── evaluation/           Chapter 6 figures
+├── models/                   six tuned pipelines, best_model.joblib
+├── notebooks/                01-04, executed end to end
+├── report/
+│   ├── latex/                main.tex, chapters/, tables/, references.bib
+│   ├── docx/                 Word build of the same content
+│   └── final/                compiled PDF
+├── results/
+│   ├── metrics/              JSON and CSV metric tables
+│   ├── predictions/          per-model test predictions
+│   ├── model_comparison.csv
+│   └── experiment_metadata.json
+├── scripts/                  notebook, figure and report builders
+├── src/                      pipeline modules
+└── tests/                    pytest suite
+\end{verbatim}
+
+\section{Installation and Execution}
+
+The pipeline requires Python 3.11 or newer and no GPU. From a clean checkout:
+
+\begin{verbatim}
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+
+python -m src.run_pipeline        # download, validate, EDA, train, evaluate
+pytest -q                         # 16 tests
+jupyter nbconvert --execute --to notebook --inplace notebooks/*.ipynb
+python -m src.predict --csv results/predictions/sample_predictions.csv
+\end{verbatim}
+
+The dataset is fetched automatically on the first run and cached in
+\texttt{data/raw/}. If the machine is offline, placing
+\texttt{Dry\_Bean\_Dataset.xlsx} in that directory is sufficient; the loader
+skips the download when the file is present.
+
+\section{Determinism}
+
+Four mechanisms make the run reproducible. A single global seed
+(\texttt{RANDOM\_STATE = 42}) is used for the split, for every cross-validation
+splitter, for every stochastic estimator and for the randomised searches. The
+split is written to disk and reloaded by every later stage, so the partition
+cannot change between scripts. All searches are deterministic given the seed
+because scikit-learn's randomised search draws from a seeded generator. Finally,
+the report tables and the number macros in this document are generated from
+\texttt{results/} by \texttt{scripts/build\_report\_assets.py}, so a re-run
+updates the text rather than leaving stale figures behind.
+
+\section{Key Code}
+
+Listing~\ref{lst:search} shows the search construction. The pipeline, the
+scoring rule and the splitter are fixed; only the estimator and its parameter
+distribution vary between models.
+
+\begin{lstlisting}[style=pycode, caption={Cross-validated search with the shared
+protocol.}, label={lst:search}]
+def _search(model_name, spec, split):
+    pipe = build_pipeline(spec["estimator"], spec["scale"])
+    kwargs = dict(estimator=pipe, scoring="f1_macro",
+                  cv=StratifiedKFold(5, shuffle=True, random_state=42),
+                  n_jobs=-1, refit=True)
+    if spec["search"] == "grid":
+        return GridSearchCV(param_grid=spec["params"], **kwargs)
+    return RandomizedSearchCV(param_distributions=spec["params"],
+                              n_iter=spec["n_iter"], random_state=42, **kwargs)
+\end{lstlisting}
+
+Listing~\ref{lst:validate} shows the integrity checks whose output fills
+Table~\ref{tab:dataset_summary} and Section~4.1. Nothing is modified at this
+stage, so the report can state exactly what was found before any cleaning
+decision.
+
+\begin{lstlisting}[style=pycode, caption={Validation reports facts; it never
+cleans.}, label={lst:validate}]
+def validate(df):
+    feature_frame = df[FEATURES]
+    corr = feature_frame.corr()
+    upper = corr.where(np.triu(np.ones(corr.shape), k=1).astype(bool))
+    return {
+        "rows": int(df.shape[0]),
+        "missing_values_total": int(df.isna().sum().sum()),
+        "duplicate_rows": int(df.duplicated().sum()),
+        "class_counts_ordered": {k: int((df[TARGET] == k).sum())
+                                 for k in CLASS_ORDER},
+        "feature_pairs_abs_corr_ge_0.90": {
+            f"{a} ~ {b}": float(v)
+            for (a, b), v in upper.stack().loc[lambda s: s.abs() >= 0.90].items()},
+    }
+\end{lstlisting}
+
+\section{Test Suite}
+
+Sixteen tests cover the three failure modes that matter for this project:
+corrupted input, leakage, and a broken prediction path. The data tests assert the
+verified shape, the absence of missing values, the seven labels and the exact
+published class counts. The preprocessing tests assert the split size, that the
+stratification holds to within 0.5 percentage points, that the split is
+deterministic, that no row appears in both partitions, that the scaler's mean
+equals the training mean, and that a standardised kNN is invariant to multiplying
+every input by 100. The prediction tests assert that the saved model returns valid
+labels, that the reported confidence is the top-3 maximum, that missing and
+non-finite inputs are rejected, that the metadata agrees with the comparison table,
+and that the command-line entry point returns success.

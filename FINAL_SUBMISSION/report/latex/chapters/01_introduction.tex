@@ -1,0 +1,97 @@
+\chapter{INTRODUCTION}
+
+\section{Background}
+
+Common bean (\textit{Phaseolus vulgaris} L.) is the most widely produced edible
+legume crop, and dry bean seed is traded as a commodity whose price depends on
+variety purity \cite{koklu2020}. Buyers distinguish Seker, Barbunya, Bombay,
+Cali, Dermason, Horoz and Sira by size, shape and colour, and a consignment that
+mixes varieties is downgraded. Grading is therefore performed at intake, usually
+by trained inspectors who examine samples by hand. This is slow, subjective and
+difficult to audit: two inspectors can disagree on beans that lie between two
+variety descriptions.
+
+Computer vision offers a deterministic alternative. A camera and a segmentation
+step produce a binary mask for each grain, from which geometric descriptors such
+as area, perimeter, axis lengths, eccentricity, solidity and roundness can be
+computed in milliseconds. Köklü and Özkan built such a system for exactly the
+seven varieties studied here and released both the measurement pipeline and the
+resulting feature table as the UCI Dry Bean dataset \cite{uci602, koklu2020}.
+Because the images have already been reduced to 16 numbers per bean, the
+remaining task is a classical supervised learning problem rather than an image
+recognition problem: no convolutional network is required, and a standard laptop
+can reproduce every experiment in this report.
+
+The learning problem is not trivial. Three of the seven varieties overlap
+strongly in feature space, the classes are imbalanced by a factor of
+\ImbalanceRatio, and several of the 16 descriptors are almost the same
+measurement expressed twice. Deciding which classifier family handles those
+conditions best, and demonstrating it with an evaluation protocol that does not
+leak test information, is the substance of this case study.
+
+\section{Problem Statement}
+
+Develop a machine learning model to classify different varieties of dry beans
+using shape, area, perimeter, roundness, compactness and other morphological
+features extracted from bean images. Analyse feature distributions, perform
+appropriate preprocessing and compare multiclass classification algorithms to
+identify the most effective approach for distinguishing the seven dry bean
+varieties.
+
+The task is therefore a seven-class supervised classification problem with 16
+continuous or integer inputs and one nominal target. The output required from the
+model is a single variety label per bean, together with a class-probability
+vector that quantifies the confidence of that label.
+
+\section{Objectives}
+
+\begin{enumerate}[label=\arabic*.]
+  \item To study the morphological characteristics of the seven dry bean
+        varieties and establish which descriptors carry between-class
+        information.
+  \item To validate the downloaded dataset and perform exploratory data analysis
+        covering class distribution, feature distributions, correlation
+        structure and outliers.
+  \item To build a leakage-free preprocessing stage and a stratified
+        training/test partition that is used unchanged by every experiment.
+  \item To implement six multiclass classifiers spanning linear, instance-based,
+        kernel and ensemble families, and to optimise their hyperparameters by
+        stratified cross-validation on the training partition only.
+  \item To compare the models on a common held-out test set using accuracy,
+        macro-averaged precision, recall and F1, weighted F1, one-versus-rest
+        ROC-AUC, confusion matrices, per-class scores and computational cost.
+  \item To identify the best-performing algorithm from that evidence, explain
+        why it succeeds, and analyse its errors and feature attributions.
+  \item To demonstrate the selected model on representative beans through a
+        reproducible prediction interface.
+\end{enumerate}
+
+\section{Scope of the Work}
+
+The study covers the UCI Dry Bean dataset exactly as distributed: \DatasetRows{}
+beans, 16 morphological features and seven varieties. It covers six classifier
+families, systematic hyperparameter search, cross-validated model selection and a
+single held-out evaluation, followed by error analysis and model interpretation.
+
+The following are outside the scope. No raw images are processed; the work starts
+from the published feature table, so segmentation quality and colour information
+are not studied. No deep learning is attempted, because the inputs are 16
+engineered scalars and a network would add cost without addressing the actual
+difficulty, which is class overlap. No attempt is made to deploy the model in a
+grading line, and no claim of industrial readiness is made: the evaluation is a
+single random split of a single dataset collected in one laboratory. Additional
+varieties, different cameras and different lighting are untested.
+
+\section{Organization of the Report}
+
+Chapter 2 reviews the original dry bean study and five further sources on kernel
+selection, class imbalance, dimensionality reduction and deep alternatives, and
+states the gap this case study addresses. Chapter 3 documents the dataset source,
+licence and attributes and presents the exploratory analysis. Chapter 4 describes
+data cleaning decisions, scaling, feature analysis and the split, including the
+measures taken to prevent leakage. Chapter 5 develops the six algorithms with
+their objective functions and hyperparameters and describes the implementation.
+Chapter 6 reports the experimental results, compares the models, analyses the
+errors and interprets the fitted model. Chapter 7 concludes, states the
+limitations and lists realistic extensions. Appendix A documents the repository
+and the reproduction steps; Appendix B carries the additional tables and figures.

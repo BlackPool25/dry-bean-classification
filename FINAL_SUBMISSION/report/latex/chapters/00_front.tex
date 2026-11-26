@@ -1,0 +1,193 @@
+% ===================== cover, certificate, declaration, abstract =====================
+
+\begin{titlepage}
+\centering
+\vspace*{0.3cm}
+
+{\bfseries\fontsize{15}{19}\selectfont [COLLEGE NAME]\par}
+\vspace{0.15cm}
+{\bfseries\fontsize{13}{16}\selectfont Department of Artificial Intelligence and
+Machine Learning\par}
+
+\vspace{1.4cm}
+\rule{0.55\textwidth}{0.6pt}
+
+\vspace{0.9cm}
+{\bfseries\fontsize{14}{17}\selectfont MACHINE LEARNING CASE STUDY REPORT\par}
+
+\vspace{0.5cm}
+{\bfseries\fontsize{17}{21}\selectfont
+Comparative Analysis of Machine Learning Algorithms for Multiclass
+Classification of Dry Bean Varieties Using Morphological Features\par}
+
+\vspace{0.9cm}
+{\normalsize Submitted in partial fulfilment of the requirements for the\par}
+\vspace{0.15cm}
+{\bfseries\fontsize{13}{16}\selectfont V Semester Bachelor of Engineering\par}
+\vspace{0.15cm}
+{\bfseries\fontsize{13}{16}\selectfont in\par}
+\vspace{0.15cm}
+{\bfseries\fontsize{13}{16}\selectfont Artificial Intelligence and Machine
+Learning\par}
+
+\vspace{0.9cm}
+{\bfseries\fontsize{12}{15}\selectfont Submitted by\par}
+\vspace{0.2cm}
+{\normalsize
+[Student Name -- USN]\par
+[Student Name -- USN]\par
+[Student Name -- USN]\par
+[Student Name -- USN]\par}
+
+\vspace{0.9cm}
+{\bfseries\fontsize{12}{15}\selectfont Under the guidance of\par}
+\vspace{0.2cm}
+{\normalsize [Guide Name and Designation]\par}
+
+\vfill
+{\bfseries\normalsize [Academic Year]\par}
+\end{titlepage}
+
+\chapter*{CERTIFICATE}
+\addcontentsline{toc}{chapter}{CERTIFICATE}
+\thispagestyle{frontmatter}
+
+This is to certify that the Machine Learning Case Study report entitled
+``Comparative Analysis of Machine Learning Algorithms for Multiclass
+Classification of Dry Bean Varieties Using Morphological Features'' is a
+bonafide work carried out by [Student Names and USNs], students of the Department
+of Artificial Intelligence and Machine Learning, [College Name], during the
+[Semester/Academic Year], in partial fulfilment of the requirements for the award
+of the Bachelor of Engineering degree.
+
+\vspace{2.2cm}
+\noindent
+\begin{minipage}[t]{0.45\textwidth}
+Guide Signature: \rule{4.2cm}{0.4pt}\\[1.2cm]
+Name: \rule{4.6cm}{0.4pt}\\
+Designation: \rule{3.6cm}{0.4pt}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.45\textwidth}
+Head of the Department: \rule{2.6cm}{0.4pt}\\[1.2cm]
+Signature: \rule{4.2cm}{0.4pt}\\
+Date: \rule{4.9cm}{0.4pt}
+\end{minipage}
+
+\vspace{1.6cm}
+\noindent Place: \rule{5.0cm}{0.4pt}
+
+\chapter*{DECLARATION}
+\addcontentsline{toc}{chapter}{DECLARATION}
+\thispagestyle{frontmatter}
+
+We hereby declare that the work presented in this report entitled ``Comparative
+Analysis of Machine Learning Algorithms for Multiclass Classification of Dry Bean
+Varieties Using Morphological Features'' is carried out by us under the guidance
+of [Guide Name]. The work is original to the best of our knowledge. All external
+sources, datasets, libraries and references used have been appropriately
+acknowledged. This report has not been submitted elsewhere for the award of any
+degree or diploma.
+
+\vspace{1.2cm}
+\noindent Names and USNs:
+\begin{enumerate}[label=\arabic*.,leftmargin=1.4em]
+  \item \rule{8.0cm}{0.4pt}
+  \item \rule{8.0cm}{0.4pt}
+  \item \rule{8.0cm}{0.4pt}
+  \item \rule{8.0cm}{0.4pt}
+\end{enumerate}
+
+\vspace{1.6cm}
+\noindent Signature of the candidates:\hfill Date: \rule{3.4cm}{0.4pt}
+
+\chapter*{ACKNOWLEDGEMENT}
+\addcontentsline{toc}{chapter}{ACKNOWLEDGEMENT}
+\thispagestyle{frontmatter}
+
+We express our sincere gratitude to [Guide Name], [Designation], Department of
+Artificial Intelligence and Machine Learning, for the technical direction
+provided during this case study, particularly in framing the evaluation protocol
+and in reviewing the statistical claims made in Chapter 6. We thank [Head of the
+Department] and the faculty of the department for the laboratory access and the
+computing time used for the hyperparameter searches. We acknowledge the UCI
+Machine Learning Repository and the authors of the original dry bean study,
+whose publicly released dataset and feature definitions made this work possible,
+and the maintainers of NumPy, pandas, scikit-learn, Matplotlib and seaborn, on
+which the implementation depends.
+
+\chapter*{ABSTRACT}
+\addcontentsline{toc}{chapter}{ABSTRACT}
+\thispagestyle{frontmatter}
+
+Dry bean varieties differ in market value and are visually similar, so manual
+grading is slow and inconsistent. This case study classifies seven registered
+varieties of dry bean (Seker, Barbunya, Bombay, Cali, Dermason, Horoz and Sira)
+from 16 morphological features extracted by computer vision. The UCI Dry Bean
+dataset was downloaded on 26 November 2026 and validated: \DatasetRows{} beans, 16
+numeric features, no missing values, \DuplicateRows{} repeated rows and a
+class imbalance of \ImbalanceRatio{} between the largest and smallest variety.
+Exploratory analysis showed that four size features separate Bombay almost
+perfectly, while the remaining six varieties overlap in a single dense region
+that only scale-free shape ratios resolve. Six classifiers were tuned with
+stratified five-fold cross-validation on a 80/20 split, using macro F1 as the
+selection criterion: multinomial logistic regression, k-nearest neighbours, an
+RBF-kernel support vector machine, random forest, extremely randomised trees and
+histogram gradient boosting. The RBF-SVM achieved the highest cross-validated
+macro F1 (\BestCV{} $\pm$ \BestCVStd{}) and, on the untouched test partition of
+\TestRows{} beans, an accuracy of \BestAcc{}, macro F1 of \BestFOne{} and
+one-vs-rest ROC-AUC of \BestAUC{}. \TestErrors{} beans were misclassified, and
+\TopConfusion{} accounts for \TopConfusionN{} of those errors. Permutation
+importance ranks \TopPermFeature{} first, consistent with the shape analysis.
+The report documents the full pipeline, the search spaces, the cost of each
+model and the limitations of the conclusions.
+
+\vspace{0.5cm}
+\noindent\textbf{Keywords:} multiclass classification, dry bean, morphological
+features, support vector machine, random forest, hyperparameter optimisation,
+macro F1-score, model interpretation
+
+\clearpage
+\tableofcontents
+\clearpage
+\listoffigures
+\addcontentsline{toc}{chapter}{LIST OF FIGURES}
+\clearpage
+\listoftables
+\addcontentsline{toc}{chapter}{LIST OF TABLES}
+\clearpage
+
+\chapter*{LIST OF ABBREVIATIONS}
+\addcontentsline{toc}{chapter}{LIST OF ABBREVIATIONS}
+\thispagestyle{frontmatter}
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{ll}
+\toprule
+\textbf{Abbreviation} & \textbf{Expansion} \\
+\midrule
+AIML & Artificial Intelligence and Machine Learning \\
+ANOVA & Analysis of Variance \\
+AUC & Area Under the Curve \\
+CV & Cross-Validation \\
+DT & Decision Tree \\
+EDA & Exploratory Data Analysis \\
+ET & Extremely Randomised Trees (Extra Trees) \\
+FN / FP & False Negative / False Positive \\
+HistGB & Histogram Gradient Boosting \\
+IQR & Inter-Quartile Range \\
+KNN & k-Nearest Neighbours \\
+LR & Logistic Regression \\
+MLP & Multilayer Perceptron \\
+OvR & One-versus-Rest \\
+RBF & Radial Basis Function \\
+RF & Random Forest \\
+ROC & Receiver Operating Characteristic \\
+SHAP & SHapley Additive exPlanations \\
+SVM & Support Vector Machine \\
+TN / TP & True Negative / True Positive \\
+UCI & University of California, Irvine \\
+\bottomrule
+\end{tabular}
+\end{table}
